@@ -1,11 +1,18 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
-function PrivateRoute({ children }) {
-    const { currentUser } = useAuth();
+const PrivateRoute = ({ children }) => {
+    const { user } = useAuth();
+    const location = useLocation();
 
-    return currentUser ? children : <Navigate to="/login" />;
-}
+    if (!user) {
+        // 사용자가 인증되지 않았다면 로그인 페이지로 리다이렉트합니다.
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+
+    // 사용자가 인증되었다면 자식 컴포넌트를 렌더링합니다.
+    return children;
+};
 
 export default PrivateRoute;

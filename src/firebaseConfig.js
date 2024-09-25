@@ -16,10 +16,7 @@ const firebaseConfig = {
 // Firebase 앱 초기화
 const app = initializeApp(firebaseConfig);
 
-// Firebase 인증 서비스 초기화
-const auth = getAuth(app);
-
-// Realtime Database 초기화
+// Realtime Database 인스턴스 가져오기
 const database = getDatabase(app);
 
-export { auth, database };
+export { app, database };

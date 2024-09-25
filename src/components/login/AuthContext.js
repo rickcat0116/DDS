@@ -1,56 +1,69 @@
-import React, { createContext, useState, useContext } from 'react';
-import { database } from '../firebase/firebase';
-import { ref, get } from 'firebase/database';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { getDatabase, ref, set, get } from 'firebase/database';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-export function useAuth() {
-    return useContext(AuthContext);
-}
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    async function login(id, pw) {
-        setLoading(true);
-        try {
-            const userRef = ref(database, `user/${id}`);
-            const snapshot = await get(userRef);
-
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                if (userData.pw === pw) {
-                    setCurrentUser({ id, ...userData });
-                    return { success: true, user: { id, ...userData } };
+    useEffect(() => {
+        const loadUser = async () => {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                // Verify user data with the database
+                const db = getDatabase();
+                const userRef = ref(db, `user/${userData.id}`);
+                const snapshot = await get(userRef);
+                if (snapshot.exists()) {
+                    setUser(userData);
+                    // Update online status
+                    const statusRef = ref(db, `status/${userData.id}`);
+                    await set(statusRef, { online: true });
                 } else {
-                    throw new Error('Incorrect password');
+                    localStorage.removeItem('user');
                 }
-            } else {
-                throw new Error('User not found');
             }
-        } catch (error) {
-            console.error("Login error:", error);
-            return { success: false, error: error.message };
-        } finally {
             setLoading(false);
-        }
-    }
+        };
 
-    function logout() {
-        setCurrentUser(null);
-    }
+        loadUser();
+    }, []);
 
-    const value = {
-        currentUser,
-        login,
-        logout,
-        loading
+    const login = async (userData) => {
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+        const db = getDatabase();
+        const statusRef = ref(db, `status/${userData.id}`);
+        await set(statusRef, { online: true });
     };
 
+    const logout = async () => {
+        if (user) {
+            const db = getDatabase();
+            const statusRef = ref(db, `status/${user.id}`);
+            await set(statusRef, { online: false });
+        }
+        setUser(null);
+        localStorage.removeItem('user');
+    };
+
+    const updateUser = (updatedUserData) => {
+        const newUserData = { ...user, ...updatedUserData };
+        setUser(newUserData);
+        localStorage.setItem('user', JSON.stringify(newUserData));
+    };
+
+    if (loading) {
+        return <div>Loading...</div>; // Or any loading component
+    }
+
     return (
-        <AuthContext.Provider value={value}>
+        <AuthContext.Provider value={{ user, login, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
     );
-}
+};
+
+export const useAuth = () => useContext(AuthContext);
