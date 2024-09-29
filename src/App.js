@@ -31,6 +31,7 @@ function AppRoutes() {
                 <Route path='/' element={<Home />} />
             </Route>
             <Route path="/teampick" element={<TeamPicker />} />
+            <Route path="/teamSelect" element={<TeamSelect/>} />
             <Route path="/draftpick" element={<DraftPicker />} />
             <Route path="/login" element={<Login />} />
             <Route element={<DashBoardLayout />}>

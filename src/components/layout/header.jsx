@@ -8,16 +8,16 @@ export default function LayoutHeader (){
             <nav>
                 <ul>
                     <li>
-                        <a href="">리그 순위</a>
+                        <a href="https://dds-simulation.web.app/reg01/FMKStandings.html">리그 순위</a>
                     </li>
                     <li>
-                        <a href="">리그 리더</a>
+                        <a href="https://dds-simulation.web.app/reg01/FMKLeagueLeaders.html">리그 리더</a>
                     </li>
                     <li>
-                        <a href="">FA 선수</a>
+                        <a href="https://dds-simulation.web.app/reg01/FA.html">FA 선수</a>
                     </li>
                     <li>
-                        <a href="">선수 검색</a>
+                        <a href="https://dds-simulation.web.app/reg01/PlayerIndex.html">선수 검색</a>
                     </li>
                 </ul>
             </nav>

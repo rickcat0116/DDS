@@ -31,160 +31,160 @@ import Wizards from '../../assets/img/picker/wizards.webp';
 
 
 export const TeamPicker = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-    'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'BB', 'CC', 'DD'
+    '데이원자산운용', 'Boston', '큐밍', 'Orca', '돈끼끄', '카르마', '디안드레헌터', '릅날두', '버럭신의농구교실', '칼말론',
+    '악성릅퀴벌레', '세젤청', 'Gamble', '스티브발머', '늡덕후', '파스칼시아캄', '미나미', '기아아아아악', '76ers', 'Dr.who',
+    '풍선날리는사람', '체리맛사탕', '갈블리', '캬루', '파피스뎀바시세 ', '휴스턴로켓츠', 'Bullets', '토키와', '김태형', 'X쨩'
 ]
 
 export const DraftPicker = [
     {
         team : 'Denver Nuggets',
-        user : '',
+        user : '큐밍',
         image : Denver
     },
     {
         team : 'Minnesota Timberwolves',
-        user : '',
+        user : '릅날두',
         image : Minnesota
     },
     {
         team : 'Oklahoma City Thunder',
-        user : '',
+        user : '악성릅퀴벌레',
         image : Oklahoma
     },
     {
         team : 'Portland Trail Blazers',
-        user : '',
+        user : '휴스턴로켓츠',
         image : Portland
     },
     {
         team : 'Utah Jazz',
-        user : '',
+        user : 'X쨩',
         image : Utah
     },
     {
         team : 'Golden State Warriors',
-        user : '',
+        user : '파스칼시아캄',
         image : Warriors
     },
     {
         team : 'LA Clippers',
-        user : '',
+        user : '세젤청',
         image : Clippers
     },
     {
         team : 'Los Angeles Lakers',
-        user : '',
+        user : '캬루',
         image : Lakers
     },
     {
         team : 'Phoenix Suns',
-        user : '',
+        user : '기아아아아악',
         image : Suns
     },
     {
         team : 'Sacramento Kings',
-        user : '',
+        user : '스티브발머',
         image : Kings
     },
     {
         team : 'Dallas Mavericks',
-        user : '',
+        user : '76ers',
         image : Dallas
     },
     {
         team : 'Houston Rockets',
-        user : '',
+        user : '미나미',
         image : Houston
     },
     {
         team : 'Memphis Grizzlies',
-        user : '',
+        user : '데이원자산운용',
         image : Memphis
     },
     {
         team : 'New Orleans Pelicans',
-        user : '',
+        user : '돈끼끄',
         image : Pelicans
     },
     {
         team : 'San Antonio Spurs',
-        user : '12',
+        user : '토키와',
         image : Spurs
     },
     {
         team : 'Boston Celtics',
-        user : '13',
+        user : '카르마',
         image : Boston
     },
     {
         team : 'Brooklyn Nets',
-        user : '',
+        user : '김태형',
         image : Nets
     },
     {
         team : 'New York Knicks',
-        user : '',
+        user : 'Gamble',
         image : Knicks
     },
     {
         team : 'Philadelphia 76ers',
-        user : '',
+        user : 'Orca',
         image : Phila
     },
     {
         team : 'Toronto Raptors',
-        user : '',
+        user : '파피스뎀바시세',
         image : Raptors
     },
     {
         team : 'Chicago Bulls',
-        user : '',
+        user : '체리맛사탕',
         image : Bulls
     },
     {
         team : 'Cleveland Cavaliers',
-        user : '',
+        user : '갈블리',
         image : Cleveland
     },
     {
         team : 'Detroit Pistons',
-        user : '',
+        user : 'Bullets',
         image : Detroit
     },
     {
         team : 'Indiana Pacers',
-        user : '',
+        user : 'Boston',
         image : Pacers
     },
     {
         team : 'Milwaukee Bucks',
-        user : '',
+        user : '풍선날리는사람',
         image : Bucks
     },
     {
         team : 'Atlanta Hawks',
-        user : '',
+        user : '늡덕후',
         image : Hawks
     },
     {
         team : 'Charlotte Hornets',
-        user : '',
+        user : '버럭신의농구교실',
         image : Hornets
     },
     {
         team : 'Miami Heat',
-        user : '',
+        user : '디안드레헌터',
         image : Heat
     },
     {
         team : 'Orlando Magic',
-        user : '',
+        user : '칼말론',
         image : Magic
     },
     {
         team : 'Washington Wizards',
-        user : '',
+        user : 'Dr.who',
         image : Wizards
     },
 ]

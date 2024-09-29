@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { DraftPicker } from "../data/pickData";
 
-export default function DraftPick () {
+export default function TeamSelect () {
     const [availableTeams, setAvailableTeams] = useState([...DraftPicker]);
     const [selectedTeams, setSelectedTeams] = useState([]);
     const [currentTeam, setCurrentTeam] = useState(null);
@@ -20,8 +20,8 @@ export default function DraftPick () {
         if (availableTeams.length === 0 || isSpinning) return;
 
         setIsSpinning(true);
-        const duration = 2000;
-        const interval = 100;
+        const duration = 3000; // 애니메이션 시간을 3초로 늘림
+        const interval = 50; // 더 빠른 회전을 위해 간격을 줄임
         let startTime = null;
 
         const animate = (timestamp) => {
@@ -29,10 +29,12 @@ export default function DraftPick () {
             const progress = timestamp - startTime;
 
             if (progress < duration) {
-                const randomIndex = Math.floor(Math.random() * availableTeams.length);
-                setCurrentTeam(availableTeams[randomIndex]);
+                // 모든 availableTeams를 순환
+                const index = Math.floor((progress / interval) % availableTeams.length);
+                setCurrentTeam(availableTeams[index]);
                 requestAnimationFrame(animate);
             } else {
+                // 최종 선택
                 const finalIndex = Math.floor(Math.random() * availableTeams.length);
                 const selectedTeam = availableTeams[finalIndex];
                 setCurrentTeam(selectedTeam);
@@ -62,7 +64,7 @@ export default function DraftPick () {
         <PickerWrap>
             <div className="pick-content">
                 <div className="pick-tit">
-                    <h1>드래프트 순번</h1>
+                    <h1>팀 셀렉트</h1>
                 </div>
 
                 <div className="slot-box">
@@ -101,7 +103,7 @@ export default function DraftPick () {
                     </div>
 
                     <div className="selected-teams">
-                        <h3>드래프트 순위</h3>
+                        <h3>팀 선택</h3>
                         <ul style={{ listStyleType: 'none', padding: 0 }}>
                             {selectedTeams.map((team, index) => (
                                 <li key={index}>
@@ -109,7 +111,6 @@ export default function DraftPick () {
                                     <div className="image-in">
                                         <img src={team.image} alt={team.team} />
                                     </div>
-                                    <span>{team.user}</span>
                                 </li>
                             ))}
                         </ul>
